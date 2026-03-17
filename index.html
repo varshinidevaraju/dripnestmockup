@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DripNest - Premium Indian Boutique</title>
+    <meta http-equiv="refresh" content="0; url=commerce.framer.media/indexa5f6.html">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        .loader {
+            text-align: center;
+        }
+    </style>
+
+    
+
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    <style>
+      /* Ultra-aggressive CSS hiding */
+      .buy-now, .framer-badge, #__framer-badge-container, .frameship-badge, #frameship-banner, 
+      div[style*="z-index: 2147483647"], div[style*="z-index: 2000000000"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    </style>
+    
+
+    
+    
+    
+
+    
+    
+
+    <script id="dripnest-branding-fix">
+      (function() {
+        // =========================================================
+        // 1. SUPER-AGGRESSIVE CSS to hide Frameship badge and UPGRADE
+        // =========================================================
+        const style = document.createElement('style');
+        style.innerHTML = `
+          .buy-now, .framer-badge, #__framer-badge-container,
+          [class*="frameship"], [id*="frameship"], [class*="Frameship"],
+          div[style*="z-index: 2147483647"], div[style*="z-index: 2000000000"],
+          div[aria-label*="Framer"], a[href*="framer.com"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+          }
+        `;
+        document.head.appendChild(style);
+
+        // =========================================================
+        // 2. TEXT REPLACEMENTS via powerful MutationObserver  
+        // =========================================================
+        const textReplacements = [
+          ['Commerce_', 'DripNest_'],
+          ['Commerce', 'DripNest'],
+          ['KnitKnot', 'DripNest'],
+          ['Retro Handheld Console', 'Royal Purple Anarkali'],
+          ['Horizon Glow Sneakers', 'Elegant Purple Saree'],
+          ['Tropical Paradise Plant', 'Lavender Designer Gown'],
+          ['Vintage Mechanical Keyboard', 'Luxe Velvet Kurta'],
+        ];
+
+        const priceReplacements = [
+          ['$59.99', '$199.99'],
+          ['$129.99', '$249.99'],
+          ['$39.99', '$179.99'],
+          ['$149.99', '$299.99'],
+        ];
+
+        const catReplacements = [
+          ['Technology', 'Clothing'],
+          ['Gadget', 'Clothing'],
+          ['Footwear', 'Ethnic Wear'],
+        ];
+
+        function replaceTextNode(node) {
+          let text = node.nodeValue;
+          if (!text || !text.trim()) return;
+          let changed = false;
+          for (const [old, n] of textReplacements) {
+            if (text.includes(old)) { text = text.split(old).join(n); changed = true; }
+          }
+          for (const [old, n] of priceReplacements) {
+            if (text.includes(old)) { text = text.split(old).join(n); changed = true; }
+          }
+          for (const [old, n] of catReplacements) {
+            if (text === old) { text = n; changed = true; }
+          }
+          if (changed) node.nodeValue = text;
+        }
+
+        function walkAndFix(root) {
+          const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+          let node;
+          while (node = walker.nextNode()) replaceTextNode(node);
+        }
+
+        // Also hide branding elements by text content
+        function hideBrandingElements() {
+          document.querySelectorAll('div, a, span, p, b').forEach(el => {
+            const text = el.textContent || '';
+            if (text.includes('UPGRADE TO UNLOCK') || text.includes('Unlock ECOMMERCE') || text.includes('Made in Framer')) {
+              let parent = el;
+              // Walk up to find a sizeable container
+              for (let i = 0; i < 5; i++) {
+                if (parent.offsetHeight > 20) { parent.style.setProperty('display', 'none', 'important'); break; }
+                parent = parent.parentElement;
+                if (!parent) break;
+              }
+            }
+          });
+        }
+
+        // =========================================================
+        // 3. IMAGE SWAPPING - Intercept framerusercontent CDN URLs  
+        // =========================================================
+        const imageMap = {
+          'oCDAVYb409OovtE2SNLVIPK7zxk': '/framerusercontent.com/images/oCDAVYb409OovtE2SNLVIPK7zxk.png',
+          'TaiLqg44CMxGOXKWtD4HkafU': '/framerusercontent.com/images/TaiLqg44CMxGOXKWtD4HkafU.png',
+          'tElJe5z6jmy6md1MRCKy40PRUc': '/framerusercontent.com/images/tElJe5z6jmy6md1MRCKy40PRUc.png',
+        };
+
+        function fixImages() {
+          // Fix <img> elements
+          document.querySelectorAll('img').forEach(img => {
+            const src = img.src || '';
+            for (const [id, localPath] of Object.entries(imageMap)) {
+              if (src.includes(id) && !src.startsWith(window.location.origin)) {
+                img.src = localPath;
+              }
+            }
+          });
+          // Fix background-image inline styles
+          document.querySelectorAll('[style*="background-image"]').forEach(el => {
+            const style = el.style.backgroundImage || '';
+            for (const [id, localPath] of Object.entries(imageMap)) {
+              if (style.includes(id) && style.includes('framerusercontent.com')) {
+                el.style.backgroundImage = 'url("' + localPath + '")';
+              }
+            }
+          });
+        }
+
+        // =========================================================
+        // 4. RUN ON LOAD + OBSERVE MUTATIONS
+        // =========================================================
+        function fullFix() {
+          walkAndFix(document.body);
+          hideBrandingElements();
+          fixImages();
+        }
+
+        fullFix();
+        setInterval(fullFix, 800);
+
+        // MutationObserver for dynamic content
+        const obs = new MutationObserver((mutations) => {
+          mutations.forEach(m => {
+            m.addedNodes.forEach(node => {
+              if (node.nodeType === Node.TEXT_NODE) replaceTextNode(node);
+              else if (node.nodeType === Node.ELEMENT_NODE) walkAndFix(node);
+            });
+          });
+          hideBrandingElements();
+          fixImages();
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+          obs.observe(document.body, { childList: true, subtree: true, characterData: true });
+          fullFix();
+        });
+
+        window.addEventListener('load', fullFix);
+      })();
+    </script>
+    
+</head>
+<body>
+    <div class="loader">
+        <h1>Commerce</h1>
+        <p>Redirecting to store...</p>
+    </div>
+</body>
+</html>
