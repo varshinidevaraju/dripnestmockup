@@ -1,0 +1,13 @@
+# HTTrack crawler artifacts
+hts-cache/
+hts-log.txt
+backblue.gif
+fade.gif
+
+# Python scripts used for local cleanup
+*.py
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
